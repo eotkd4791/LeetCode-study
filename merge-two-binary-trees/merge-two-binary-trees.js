@@ -39,6 +39,5 @@ const mergeTrees = function(root1, root2) {
             cur.right ??= new TreeNode();
             merge(tree.right, cur.right);
         }
-        
     }
 };
