@@ -12,13 +12,11 @@
  * @return {TreeNode}
  */
 const mergeTrees = function(root1, root2) {
-    if(root1 || root2) {
-        const treeNode = new TreeNode();
-        merge(root1, treeNode);
-        merge(root2, treeNode);
-        return treeNode;   
+    if(!root1 || !root2) {
+       return root1 ?? root2;
     }
-    return null;
+    merge(root1, root2);
+    return root2;   
     
     function merge(tree, cur) {
         if(tree === null) {
