@@ -4,7 +4,6 @@
  */
 const partitionLabels = function(s) {
     const segments = saveSegments();
-    console.log(segments)
     return getPartitions();
     
     function saveSegments() {
@@ -21,12 +20,11 @@ const partitionLabels = function(s) {
         const result = [];
         let standardFrom = segments[s.charAt(0)].from;
         let standardTo = segments[s.charAt(0)].to;
-        const isInRange = (start, target, end) => (start <= target && target <= end); 
+        const isInRange = target => (standardFrom <= target && target <= standardTo); 
         
         for(const letter of s) {
             const {from, to} = segments[letter];
-            console.log(standardFrom, standardTo)
-            if(isInRange(standardFrom, from, standardTo) || isInRange(standardFrom, to, standardTo)) {
+            if(isInRange(from) || isInRange(to)) {
                 standardTo = standardTo < to ? to : standardTo;
             } else {
                 result.push(standardTo - standardFrom + 1);
@@ -34,8 +32,6 @@ const partitionLabels = function(s) {
                 standardTo = to;
             }
         }
-        result.push(standardTo - standardFrom + 1);
-        
-        return result;
+        return result.concat(standardTo - standardFrom + 1);
     }
 };
