@@ -3,19 +3,11 @@
  * @return {number[]}
  */
 const countBits = function(n) {
-    if(n === 0) {
-        return [0];
-    }
-    const isInside = x => x <= n;
+    if(n === 0) return [0];
     
-    const arr = [0, 1];
-    for(let i=1; i<=n; i++) {
-        if(isInside(i * 2)) {
-            arr[i * 2] = arr[i];
-        }
-        if(isInside(i * 2 + 1)) {
-            arr[i * 2 + 1] = arr[i] + 1;   
-        }
+    const dp = [0, 1];
+    for(let i=2; i<=n; i++) {
+        dp[i] = dp[Math.floor(i / 2)] + dp[i % 2];
     }
-    return arr;
+    return dp;
 };
