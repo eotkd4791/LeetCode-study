@@ -10,17 +10,22 @@
  * @return {ListNode}
  */
 const reverseList = function(head) {
-    let newHead = null;
-    head && recur(head);
-    return newHead;
+    let cur = head;
+    const vals = [];
     
-    function recur(node) {
-        if(node.next === null) {
-            newHead = new ListNode(node.val, null);
-            return newHead;
-        }
-        const curNode = recur(node.next);
-        curNode.next = new ListNode(node.val, null);
-        return curNode.next;
+    while(cur) {
+        vals.push(cur.val);
+        cur = cur.next;
     }
+    
+    vals.reverse();
+    
+    cur = head;
+    
+    for(let i=0; cur; i++) {
+        cur.val = vals[i];
+        cur = cur.next;
+    }
+    
+    return head;
 };
