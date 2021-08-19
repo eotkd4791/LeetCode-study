@@ -5,13 +5,11 @@
 const countSubstrings = function(s) {
     const dp = makeOneLetterTrue(getInitialArray());
     
-    for(let j=1; j<s.length; j++) {
-        for(let i=0; i<j; i++) {
-            if(j-i < 3) {
-                dp[i][j] = s[i] === s[j];
-            } else {
-                dp[i][j] = dp[i+1][j-1] && s[i] === s[j]
-            }
+    for(let i=1; i<s.length; i++) {
+        for(let j=0; j<i; j++) {
+            i-j < 3
+                ? dp[j][i] = s[i] === s[j]
+                : dp[j][i] = dp[j+1][i-1] && s[i] === s[j];
         }
     }
     
@@ -19,7 +17,7 @@ const countSubstrings = function(s) {
     
     function getInitialArray () {
         return JSON.parse(JSON.stringify(
-            new Array(s.length).fill(new Array(s.length).fill(null))
+            new Array(s.length).fill(new Array(s.length).fill(false))
         ));
     }
     
