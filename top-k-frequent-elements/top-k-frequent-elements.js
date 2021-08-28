@@ -9,22 +9,29 @@ const topKFrequent = function(nums, k) {
     return getTopKFrequent();
     
     function getTopKFrequent() {
-        const result = [];
+        let result = [];
         for(let i=frequency.length -1 ; i>= 0; i--) {
-            if(k === 0) {
+            if(isCompleteSelecting()) {
                 return result;
             }
-            if(frequency[i]) {
-                for(let j=0; j<frequency[i].length; j++) {
-                    k--;
-                    result.push(frequency[i][j]);
-                    if(k === 0) {
-                        return result;
-                    }
-                }   
-            }
+            frequency[i] && (result = extractFrequency(i, result));
         }
         return result;
+        
+        function extractFrequency(i, listKFrequency) {
+            for(let j=0; j<frequency[i].length; j++) {
+                k--;
+                listKFrequency.push(frequency[i][j]);
+                if(isCompleteSelecting()) {
+                    break;
+                }
+            }
+            return listKFrequency;
+        }
+        
+        function isCompleteSelecting() {
+            return k === 0;
+        }
     }
     
     function getFrequency() {
