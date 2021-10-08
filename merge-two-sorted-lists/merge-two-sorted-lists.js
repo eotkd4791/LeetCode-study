@@ -16,17 +16,9 @@ const mergeTwoLists = function(l1, l2) {
     let cur = null;
     
     if(arr.length > 0) {
-        const res = arr
-            .sort((a,b) => a - b)
-            .map(v => new ListNode(v))
-            .reduce((acc, cur) => {
-                if(!result) {
-                    result = acc;
-                }
-                acc.next = cur;
-                return cur;
-            });
-        result ??= res;
+        const res = arr.sort((a,b) => a - b).map(v => new ListNode(v));
+        res.reduce((acc, cur) => acc.next = cur);
+        result = res[0];
     }
     return result;
 
