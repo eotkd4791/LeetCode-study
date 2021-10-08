@@ -5,11 +5,12 @@
 const minPathSum = function(grid) {
     const m = grid.length;
     const n = grid[0].length;
+    const LIMIT = 987654321;
     const isInside = (x, y) => 0 <= x && x < m && 0 <= y && y < n;
     
     const dp = JSON.parse(JSON.stringify(
         Array(m).fill(
-            Array(n).fill(987654321)
+            Array(n).fill(LIMIT)
         )
     ));
     return recur(m-1, n-1);
@@ -18,7 +19,7 @@ const minPathSum = function(grid) {
         if(x === 0 && y === 0) {
             return grid[x][y];
         }
-        if(dp[x][y]<987654321) {
+        if(dp[x][y] < LIMIT) {
             return dp[x][y];
         }
         if(isInside(x-1, y)) {
