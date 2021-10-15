@@ -1,5 +1,5 @@
 function numTrees(n: number): number {
-    const dp = Array(n+1).fill(0);
+    const dp: number[] = Array(n+1).fill(0);
     dp[0] = 1;
 
     for(let i=1; i<=n; i++) {
