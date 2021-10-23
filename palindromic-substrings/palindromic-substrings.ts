@@ -2,7 +2,7 @@ function countSubstrings(s: string): number {
     const n = s.length;
     let result: number = 0;
     
-    const dp = JSON.parse(JSON.stringify(
+    const dp: boolean[][] = JSON.parse(JSON.stringify(
         Array(n).fill(
             Array(n).fill(false)
         )
