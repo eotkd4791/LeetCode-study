@@ -18,7 +18,6 @@ function kthSmallest(root: Tree, k: number): number {
     recur(root);
     return values[k-1];
     
-    
     function recur(tree: Tree) {
         tree.left && recur(tree.left);
         values.push(tree.val);
