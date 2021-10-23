@@ -12,18 +12,18 @@
  * @return {TreeNode}
  */
 const buildTree = function(preorder, inorder) {
-    let index = 0;
+    let indexOfPreorder = 0;
     return recur(new TreeNode(), inorder);
     
-    function recur(node, arr) {        
-        if(index >= inorder.length) return;
+    function recur(node, candidate) {        
+        if(indexOfPreorder >= inorder.length) return;
         
-        const mid = arr.findIndex(v => v === preorder[index]);
-        index++;
+        const rootIndex = candidate.findIndex(v => v === preorder[indexOfPreorder]);
+        indexOfPreorder++;
         
-        node.val = arr[mid];
-        const leftNodes = arr.slice(0, mid);
-        const rightNodes = arr.slice(mid + 1);
+        node.val = candidate[rootIndex];
+        const leftNodes = candidate.slice(0, rootIndex);
+        const rightNodes = candidate.slice(rootIndex + 1);
         
         if(leftNodes.length > 0) {
             node.left = new TreeNode();
