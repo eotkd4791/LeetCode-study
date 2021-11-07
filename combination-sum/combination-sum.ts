@@ -6,13 +6,10 @@ function combinationSum(candidates: number[], target: number): number[][] {
     return result;
 
     function recur(idx: number, sum: number, arr: number[]) {
-        console.log(sum)
-        if(sum > target) {
+        if(sum >= target) {
+            sum === target && result.push(arr);
             return;
-        } else if(sum === target) {
-            result.push(arr);
-            return;
-        }
+        } 
 
         for(let i=idx; i<candidates.length; i++) {
             const candidate = candidates[i];
