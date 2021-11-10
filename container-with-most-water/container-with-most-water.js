@@ -11,11 +11,10 @@ const maxArea = function(height) {
     
     while(left < right) {
         result = Math.max(result, Math.min(height[left], height[right]) * (right - left));
-        if(height[left] >= height[right]) {
-            right--;
-        } else {
-            left++;
-        }
+        
+        height[left] >= height[right]
+            ? right--
+            : left++;
     }
     return result;
 };
