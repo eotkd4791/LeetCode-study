@@ -24,6 +24,7 @@ function flatten(root: TreeNode | null): void {
         if(node === null) {
             return;
         }
+        
         nodes.push(node);
         recur(node.left);
         recur(node.right);
@@ -34,14 +35,11 @@ function flatten(root: TreeNode | null): void {
             return;
         }
         
-        let curNode = root;
-        
-        if(root) {
-            nodes.forEach(node => {
-                curNode!.left = null;
-                curNode!.right = node;
-                curNode = curNode!.right;
-            });
-        }
+        let curNode: TreeNode = root;
+        nodes.forEach(node => {
+            curNode!.left = null;
+            curNode!.right = node;
+            curNode = curNode!.right;
+        });
     }
 };
