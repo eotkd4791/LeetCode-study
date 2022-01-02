@@ -10,9 +10,7 @@ const maxSubArray = function(nums) {
         if(sum < 0) {
             sum = 0;
         }
-        
         sum += num;
-        
         max = Math.max(max, sum);
     });
     
