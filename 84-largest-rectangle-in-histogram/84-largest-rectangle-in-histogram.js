@@ -5,6 +5,7 @@
 const largestRectangleArea = function(heights) {
     let answer = 0;
     const stack = [0];
+    const n = heights.length;
     
     for(let i=0; i<heights.length; i++) {
         while(stack.length > 0 && heights[i] <= heights[getStackTop()]) {
@@ -18,13 +19,9 @@ const largestRectangleArea = function(heights) {
         stack.push(i);
     }
     
-    console.log(stack)
-    
     while(stack.length > 0) {
         const currentHeight = heights[stack.pop()];
-        const currentWidth = stack.length > 0 
-                ? heights.length - getStackTop() - 1
-                : heights.length;
+        const currentWidth = stack.length > 0 ? n - getStackTop() - 1 : n;
             
             answer = Math.max(answer , currentHeight * currentWidth);
     }
