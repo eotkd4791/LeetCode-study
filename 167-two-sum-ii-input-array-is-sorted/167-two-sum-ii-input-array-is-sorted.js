@@ -16,12 +16,7 @@ const twoSum = function(numbers, target) {
         if(sum === target) {
             break;
         }
-        if(target > sum) {
-            left++;
-        } else {
-            right--;   
-        }
+        target > sum ? left++ : right--;   
     }
-    
     return [left + 1, right + 1];
 };
