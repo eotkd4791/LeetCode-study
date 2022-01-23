@@ -3,18 +3,36 @@
  * @return {number}
  */
 const maxProduct = function(nums) {
-    let answer = Math.max(...nums);
+    const n = nums.length;
+    const dp = JSON.parse(JSON.stringify(
+        Array(n).fill(
+            Array(2).fill(1)
+        )
+    ));
     
-    let currentMax = 1;
-    let currentMin = 1;
-    
-    for(const num of nums){
-       const temp = currentMax * num;
-        
-        currentMax = Math.max(temp, num * currentMin, num);
-        currentMin = Math.min(temp, num * currentMin, num);
-		
-        answer = Math.max(answer, currentMax);
+    for(let i=0; i<n; i++) {
+        if(i===0) {
+            dp[0][1] = nums[0];
+        }
+        dp[i][0] = nums[i];
     }
-    return answer;
+    
+    for(let i=1; i<n; i++) {
+        dp[i][0] = Math.max(
+            nums[i],
+            dp[i-1][0] * nums[i], 
+            dp[i-1][1] * nums[i]
+        );
+        
+        dp[i][1] = Math.min(
+            nums[i],
+            dp[i-1][0] * nums[i], 
+            dp[i-1][1] * nums[i]
+        );
+    }
+    
+    return dp.reduce((acc, cur) => 
+        Math.max(acc, ...cur), 
+        Number.MIN_SAFE_INTEGER
+    );
 };
