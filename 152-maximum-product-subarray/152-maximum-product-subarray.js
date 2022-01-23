@@ -11,9 +11,7 @@ const maxProduct = function(nums) {
     ));
     
     for(let i=0; i<n; i++) {
-        if(i===0) {
-            dp[0][1] = nums[0];
-        }
+        i===0 && (dp[0][1] = nums[0]);
         dp[i][0] = nums[i];
     }
     
