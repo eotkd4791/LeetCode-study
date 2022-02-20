@@ -16,7 +16,6 @@ const addTwoNumbers = function(l1, l2) {
     
     recur(l1, l2, 0);  
     return head;
-  
     
     function recur(v1, v2, overTen) {
         if(v1 === null && v2 === null) {
@@ -25,7 +24,6 @@ const addTwoNumbers = function(l1, l2) {
             }
             return;
         }
-        
         
         const a = v1 ? v1.val : 0;
         const b = v2 ? v2.val : 0;
@@ -41,6 +39,6 @@ const addTwoNumbers = function(l1, l2) {
             cur = cur.next;    
         }
         
-        recur(v1 ? v1.next : null, v2 ? v2.next : null, sum >= 10);
+        recur(v1 && v1.next, v2 && v2.next, sum >= 10);
     }
 };
