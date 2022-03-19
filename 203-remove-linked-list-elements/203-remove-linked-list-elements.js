@@ -18,12 +18,10 @@ const removeElements = function(head, val) {
     while(cur !== null) {
         if(cur.val === val) {
             prev.next = cur.next;
-            cur = cur.next;
         } else {
             prev = cur;
-            cur = cur.next;
         }
+        cur = cur.next;
     }
-    
     return start.next;
 };
